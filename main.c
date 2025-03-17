@@ -3,13 +3,13 @@
 #include <string.h>
 void dump_file(FILE *f) {
 	int c;
-	while ((c = getc(f)) != EOF || !feof(f)) {
+	while ((c = getc(f)) != EOF || (!feof(f) && !ferror(f))) {
 		putchar(c);
 	}
 }
 int main(int argc, char **argv) {
 	FILE *f;
-	int i, e;
+	int i, e = 0;
 	for (i = 1; i < argc; i++) {
 		if (!(f = fopen(argv[i], "r"))) {
 			fputs(strerror(errno), stderr);
