@@ -7,12 +7,19 @@ void dump_file(FILE *f) {
 		putchar(c);
 	}
 }
+void eput(char* s) {
+	fputs(s, stderr);
+}
 int main(int argc, char **argv) {
 	FILE *f;
 	int i, e = 0;
 	for (i = 1; i < argc; i++) {
-		if (!(f = fopen(argv[i], "r"))) {
-			fputs(strerror(errno), stderr);
+		char *arg = argv[i];
+		if (!(f = fopen(arg, "r"))) {
+			eput(strerror(errno));
+			eput(" - ");
+			eput(arg);
+			eput("\n");
 			e = 1;
 		}
 	}
@@ -25,4 +32,3 @@ int main(int argc, char **argv) {
 	}
 	return 0;
 }
-
