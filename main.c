@@ -21,6 +21,8 @@ int main(int argc, char **argv) {
 			eput(arg);
 			eput("\n");
 			e = 1;
+		} else {
+			fclose(f);
 		}
 	}
 	if (e) {
@@ -29,6 +31,7 @@ int main(int argc, char **argv) {
 	for (i = 1; i < argc; i++) {
 		f = fopen(argv[i], "r");
 		dump_file(f);
+		fclose(f);
 	}
 	return 0;
 }
