@@ -21,9 +21,9 @@ int main(int argc, char **argv) {
 			eput(arg);
 			eput("\n");
 			e = 1;
-		} else {
-			fclose(f);
+			continue;
 		}
+		fclose(f);
 	}
 	if (e) {
 		return 1;
