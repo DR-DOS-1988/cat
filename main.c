@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <errno.h>
-#include <string.h>
 void dump_file(FILE *f) {
 	int c;
 	while ((c = getc(f)) != EOF || (!feof(f) && !ferror(f))) {
@@ -14,7 +12,8 @@ int main(int argc, char **argv) {
 	for (i = 1; i < argc; i++) {
 		char *arg = argv[i];
 		if (!(f = fopen(arg, "r"))) {
-			fprintf(stderr, "cat: %s: %s\n", arg, strerror(errno));
+			fprintf(stderr, "cat: %s: ", arg);
+			perror("");
 			e = 1;
 			continue;
 		}
