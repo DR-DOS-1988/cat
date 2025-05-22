@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
 	int i;
 	for (i = 1; i < argc; i++) {
 		char *arg = argv[i];
-		if (!(f = fopen(arg, "r"))) {
+		if (!(f = fopen(arg, "rb"))) {
 			fprintf(stderr, "cat: %s: ", arg);
 			perror("");
 			continue;
